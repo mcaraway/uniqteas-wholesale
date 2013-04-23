@@ -1,0 +1,14 @@
+<div class="tea-tin" style="width:150px;height:150px;left:7px;">
+	<img src="/assets/TeaTin.png"/>
+</div>
+<div class="tea-tin-template" style="width:150px;height:150px;left:7px;top:0px;">
+	<img src="/assets/store/templates/Template-white.png"/>
+</div>
+<div class="tea-tin-name" style="width:59px;top:17px;left:50px;font-size:10px;padding:2px;color:black;"><%= product ? product.name : "Your Custom Blend" %></div>
+<div class="tea-tin-image" style="width:56px;height:42px;top:40px;left:52px;">
+	<%= small_image(product) %>
+</div>
+<div class="tea-tin-description" style="width:59px;height:20px;text-overflow:clip;top:105px;left:50px;font-size:2.5px;padding:2px;color:black;"><%= product_description(product) rescue t(:product_has_no_description) %></div>
+<div class="tea-tin-image-fade" style="width:150px;height:150px;left:7px;">
+	<img src="/assets/TeaTinLabelFade.png"/>
+</div> 

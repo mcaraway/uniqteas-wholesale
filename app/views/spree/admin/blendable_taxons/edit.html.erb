@@ -16,7 +16,7 @@
 		<%= f.label :product_ids, t(:blendable_products) %>
 		<br />
 		
-        <%= f.select :product_ids, blendable_taxon_products_for(@blendable_taxon), {}, :class => "select2 fullwidth", :multiple => true %>
+        <%= f.select :product_ids, blendable_taxon_products_for(@blendable_taxon), {}, :class => "select2", :multiple => true %>
 		<% end %>
 	</div>    
 	<%= render :partial => 'spree/admin/shared/edit_resource_links' %>
@@ -28,7 +28,7 @@
 
 <% unless Rails.env.test? %>
   <script>
-  $("#blendable_taxon_product_ids").select2();
+  $("#blendable_taxon_product_ids").select2({maximumSelectionSize: 8});
 
   $('.select2-container').css({width: '20em'})
   </script>

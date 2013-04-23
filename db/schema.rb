@@ -11,7 +11,23 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130411030746) do
+ActiveRecord::Schema.define(:version => 20130414150335) do
+
+  create_table "delayed_jobs", :force => true do |t|
+    t.integer  "priority",   :default => 0
+    t.integer  "attempts",   :default => 0
+    t.text     "handler"
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.string   "queue"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
+  add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
 
   create_table "spree_activators", :force => true do |t|
     t.string   "description"
@@ -44,6 +60,8 @@ ActiveRecord::Schema.define(:version => 20130411030746) do
     t.integer  "country_id"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
+    t.integer  "user_id"
+    t.datetime "deleted_at"
   end
 
   add_index "spree_addresses", ["firstname"], :name => "index_addresses_on_firstname"
@@ -79,6 +97,8 @@ ActiveRecord::Schema.define(:version => 20130411030746) do
     t.string   "type",                    :limit => 75
     t.datetime "attachment_updated_at"
     t.text     "alt"
+    t.string   "label_image_remote_url"
+    t.boolean  "processing"
   end
 
   add_index "spree_assets", ["viewable_id"], :name => "index_assets_on_viewable_id"
@@ -96,6 +116,7 @@ ActiveRecord::Schema.define(:version => 20130411030746) do
     t.integer  "taxon_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "name"
   end
 
   create_table "spree_calculators", :force => true do |t|
@@ -153,6 +174,13 @@ ActiveRecord::Schema.define(:version => 20130411030746) do
     t.datetime "updated_at",                             :null => false
   end
 
+  create_table "spree_home_page_sliders", :force => true do |t|
+    t.string   "name"
+    t.string   "html"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "spree_inquiries", :force => true do |t|
     t.string   "name"
     t.string   "email"
@@ -181,6 +209,19 @@ ActiveRecord::Schema.define(:version => 20130411030746) do
   add_index "spree_inventory_units", ["order_id"], :name => "index_inventory_units_on_order_id"
   add_index "spree_inventory_units", ["shipment_id"], :name => "index_inventory_units_on_shipment_id"
   add_index "spree_inventory_units", ["variant_id"], :name => "index_inventory_units_on_variant_id"
+
+  create_table "spree_label_templates", :force => true do |t|
+    t.string   "name"
+    t.string   "group"
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
+    t.string   "label_image_file_name"
+    t.string   "label_image_content_type"
+    t.integer  "label_image_width"
+    t.integer  "label_image_height"
+    t.integer  "label_image_size"
+    t.datetime "label_image_updated_at"
+  end
 
   create_table "spree_line_items", :force => true do |t|
     t.integer  "variant_id"
@@ -228,8 +269,12 @@ ActiveRecord::Schema.define(:version => 20130411030746) do
     t.string   "name"
     t.string   "presentation"
     t.integer  "option_type_id"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   create_table "spree_option_values_variants", :id => false, :force => true do |t|
@@ -290,6 +335,13 @@ ActiveRecord::Schema.define(:version => 20130411030746) do
     t.string   "identifier"
   end
 
+  create_table "spree_paypal_accounts", :force => true do |t|
+    t.string "email"
+    t.string "payer_id"
+    t.string "payer_country"
+    t.string "payer_status"
+  end
+
   create_table "spree_preferences", :force => true do |t|
     t.text     "value"
     t.string   "key"
@@ -339,6 +391,9 @@ ActiveRecord::Schema.define(:version => 20130411030746) do
     t.datetime "created_at",                              :null => false
     t.datetime "updated_at",                              :null => false
     t.boolean  "on_demand",            :default => false
+    t.boolean  "final",                :default => true
+    t.integer  "user_id"
+    t.boolean  "public",               :default => true
   end
 
   add_index "spree_products", ["available_on"], :name => "index_spree_products_on_available_on"
@@ -610,6 +665,17 @@ ActiveRecord::Schema.define(:version => 20130411030746) do
   end
 
   add_index "spree_variants", ["product_id"], :name => "index_spree_variants_on_product_id"
+
+  create_table "spree_volume_prices", :force => true do |t|
+    t.integer  "variant_id"
+    t.string   "name"
+    t.string   "range"
+    t.decimal  "amount",        :precision => 8, :scale => 2
+    t.integer  "position"
+    t.datetime "created_at",                                  :null => false
+    t.datetime "updated_at",                                  :null => false
+    t.string   "discount_type"
+  end
 
   create_table "spree_zone_members", :force => true do |t|
     t.integer  "zoneable_id"

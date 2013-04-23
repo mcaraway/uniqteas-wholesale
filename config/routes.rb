@@ -1,5 +1,7 @@
 Uniqteas::Application.routes.draw do
 
+  resources :label_templates
+
   # This line mounts Spree's routes at the root of your application.
   # This means, any requests to URLs such as /products, will go to Spree::ProductsController.
   # If you would like to change where this engine is mounted, simply change the :at option to something different.
@@ -74,6 +76,8 @@ Spree::Core::Engine.routes.prepend do
   get "spree/pages/green_program"
   get "spree/pages/black_program"
 
+
+  match '/blendit', :to => 'products#new'
   match '/bighoop', :to => 'pages#bighoop'
   match '/about', :to => 'pages#about'
   match '/faqs', :to => 'pages#faqs'
@@ -82,10 +86,38 @@ Spree::Core::Engine.routes.prepend do
   match '/white-program', :to => 'pages#white_program'
   match '/green-program', :to => 'pages#green_program'
   match '/black-program', :to => 'pages#black_program'
+  match '/myblends', :to => 'users#myblends'
+  match '/admin/home_page_sliders/:home_page_slider/templates/preview.html', :to => redirect('/templates/preview.html')
+  match '/admin/home_page_sliders/:home_page_slider/templates/preview.css', :to => redirect('/templates/preview.css')
 
   resource :pages
+  resource :label_templates 
+
+  resources :products do
+    resources :images do
+      collection do
+        post :update_positions
+      end
+    end
+    
+    resource :product_labels
+  end
+
   namespace :admin do
     resource :blendable_products_settings, :only => ['show', 'update', 'edit']
+    
+    resources :label_templates do
+      collection do
+        post :update_positions
+        post :refresh_labels
+        post :reprocess_images
+      end
+    end
+    resources :home_page_sliders do
+      collection do
+        post :update_positions
+      end
+    end
 
     resources :blendable_taxons do
       collection do
@@ -97,6 +129,10 @@ Spree::Core::Engine.routes.prepend do
       end
       resources :products
     end
+  end
+
+  devise_scope :user do
+    get '/signout' => 'user_sessions#destroy'
   end
 
 end

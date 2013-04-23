@@ -50,9 +50,17 @@ gem 'jquery-rails'
 # gem 'debugger'
 gem 'spree', '~> 1.3.0'
 gem 'spree_fancy', :branch => "customize_to_uniqteas", :git => 'git://github.com/mcaraway/spree_fancy.git'
-gem 'spree_gateway', :github => 'spree/spree_gateway', :branch => '1-3-stable'
-gem 'spree_auth_devise', :github => 'spree/spree_auth_devise', :branch => '1-3-stable'
+gem 'spree_auth_devise', :branch => "1-3-stable", :git => 'git://github.com/spree/spree_auth_devise'
+gem 'spree_active_shipping', :branch => "1-3-stable", :git => "git://github.com/spree/spree_active_shipping"
+gem 'active_shipping', :git => "git://github.com/Shopify/active_shipping"
+gem "spree_paypal_express", :branch => "1-3-stable", :git => "git://github.com/spree/spree_paypal_express.git"
+gem 'spree_gateway', :branch => "1-3-stable", :git => 'git://github.com/spree/spree_gateway.git' # make sure to include after spree
+gem 'spree_volume_pricing', :git => 'git://github.com/spree/spree_volume_pricing.git'
+gem "spree_social_products", :branch => "1-2-stable", :git => "git://github.com/spree/spree_social_products.git"
+gem 'spree_address_book', :git => "git://github.com/romul/spree_address_book.git"
+# gem 'spree_print_invoice', :branch => "1-1-stable", :git => 'git://github.com/spree/spree_print_invoice.git'
 gem 'spree_contact_us', :git => 'git://github.com/sbeam/spree_contact_us.git'
 gem "recaptcha", :require => "recaptcha/rails" # if you are using reCAPTCHA
+gem 'spree_variant_options', '0.4.1'
 gem 'datashift'
 gem 'datashift_spree'

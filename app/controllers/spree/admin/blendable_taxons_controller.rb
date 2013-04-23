@@ -4,10 +4,7 @@ class Spree::Admin::BlendableTaxonsController < Spree::Admin::ResourceController
   
   def update
     if params[:blendable_taxon][:product_ids].present?
-      logger.debug "************ params before = #{params[:blendable_taxon][:product_ids]}"
       params[:blendable_taxon][:product_ids].reject! { |c| c.empty? }
-      # params[:blendable_taxon][:product_ids] = params[:blendable_taxon][:product_ids].split(',')
-      logger.debug "************ params after = #{params[:blendable_taxon][:product_ids]}"
     end
     super
   end
@@ -21,14 +18,14 @@ class Spree::Admin::BlendableTaxonsController < Spree::Admin::ResourceController
   protected
 
   def load_data
-    @products = Spree::Product.order(:name)
+    @products = Spree::Product.where("user_id is null").order(:name)
   end
 
   def location_after_save
     if @blendable_taxon.created_at == @blendable_taxon.updated_at
       edit_admin_blendable_taxon_url(@blendable_taxon)
     else
-      admin_blendable_taxon_url
+      edit_admin_blendable_taxon_url(@blendable_taxon)
     end
   end
 
