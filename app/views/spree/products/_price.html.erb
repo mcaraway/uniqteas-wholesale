@@ -8,7 +8,7 @@
 		</div>
 	</div>
 
-	<% if @product.final %>
+	<% if @product.final && current_user %>
 	<div class="add-to-cart">
 		<% if @product.has_stock? || Spree::Config[:allow_backorders] %>
 		<%= number_field_tag (@product.has_variants? ? :quantity : "variants[#{@product.master.id}]"),
@@ -20,7 +20,7 @@
 		<%= content_tag('strong', t(:out_of_stock)) %>
 		<% end %>
 	</div>
-	<% else %>
+	<% elsif !@product.final %>
 	<div style="color:#CC0000;"><%= t(:not_orderable_until_final)%></div>
 	<% end %>
 
