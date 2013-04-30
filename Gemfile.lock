@@ -10,22 +10,6 @@ GIT
       json (>= 1.5.1)
 
 GIT
-  remote: git://github.com/autotelik/datashift.git
-  revision: e3946791fdd53d196a357b9981277b816eb98ea5
-  specs:
-    datashift (0.13.0)
-      rubyzip
-      spreadsheet
-
-GIT
-  remote: git://github.com/autotelik/datashift_spree.git
-  revision: dc83b5d02465644ac84ee7be928b0d8e82d887d0
-  specs:
-    datashift_spree (0.5.0)
-      datashift (>= 0.12.0)
-      mechanize
-
-GIT
   remote: git://github.com/mcaraway/spree_fancy.git
   revision: 62b5f0405dc3b29e2fbd862554ed9997778a0a72
   branch: customize_to_uniqteas
@@ -61,7 +45,7 @@ GIT
 
 GIT
   remote: git://github.com/spree/spree_auth_devise
-  revision: ccd6add27a101aa3942df2e3c58a0c65b639314c
+  revision: 3916a2b570b9ea76e330b0961f639feb777c3f46
   branch: 1-3-stable
   specs:
     spree_auth_devise (1.0.0)
@@ -72,7 +56,7 @@ GIT
 
 GIT
   remote: git://github.com/spree/spree_gateway.git
-  revision: a5fe8fc8c88cf293c6fdcddb3a2ab7d1aae3cdb1
+  revision: b13d777aecf348eeffba1fa8e2df95298af1a1ea
   branch: 1-3-stable
   specs:
     spree_gateway (1.2.0.rc2)
@@ -155,7 +139,6 @@ GEM
       json (~> 1.4)
       nokogiri (>= 1.4.4)
       uuidtools (~> 2.1)
-    bcrypt-ruby (3.0.1)
     bcrypt-ruby (3.0.1-x86-mingw32)
     builder (3.0.4)
     cancan (1.6.8)
@@ -179,6 +162,12 @@ GEM
     compass-rails (1.0.3)
       compass (>= 0.12.2, < 0.14)
     dalli (2.6.2)
+    datashift (0.13.0)
+      rubyzip
+      spreadsheet
+    datashift_spree (0.5.0)
+      datashift (>= 0.12.0)
+      mechanize
     deface (0.9.1)
       nokogiri (~> 1.5.0)
       rails (~> 3.1)
@@ -241,8 +230,7 @@ GEM
     multi_xml (0.5.3)
     net-http-digest_auth (1.3)
     net-http-persistent (2.8)
-    newrelic_rpm (3.6.1.87)
-    nokogiri (1.5.9)
+    newrelic_rpm (3.6.1.88)
     nokogiri (1.5.9-x86-mingw32)
     nori (1.1.5)
     ntlm-http (0.1.1)
@@ -367,7 +355,6 @@ GEM
       multi_json (~> 1.0)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
-    sqlite3 (1.3.7)
     sqlite3 (1.3.7-x86-mingw32)
     state_machine (1.1.2)
     stringex (1.3.3)
@@ -382,7 +369,6 @@ GEM
       multi_json (~> 1.0, >= 1.0.2)
     unf (0.1.1)
       unf_ext
-    unf_ext (0.0.6)
     unf_ext (0.0.6-x86-mingw32)
     uuidtools (2.1.4)
     versioncake (0.4.0)
@@ -404,8 +390,8 @@ DEPENDENCIES
   closure-compiler
   coffee-rails (~> 3.2.1)
   dalli
-  datashift!
-  datashift_spree!
+  datashift (~> 0.13.0)
+  datashift_spree (~> 0.5.0)
   delayed_job_active_record
   jquery-rails (= 2.1.4)
   newrelic_rpm

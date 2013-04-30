@@ -61,5 +61,5 @@ gem 'spree_address_book', :git => "git://github.com/romul/spree_address_book.git
 gem 'spree_contact_us', :git => 'git://github.com/sbeam/spree_contact_us.git'
 gem "recaptcha", :require => "recaptcha/rails" # if you are using reCAPTCHA
 gem 'spree_variant_options', '0.4.1'
-gem 'datashift', :git => 'git://github.com/autotelik/datashift.git'
-gem 'datashift_spree', :git => 'git://github.com/autotelik/datashift_spree.git'
+gem 'datashift', '~> 0.13.0'
+gem 'datashift_spree', '~>0.5.0'
