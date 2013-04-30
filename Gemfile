@@ -4,7 +4,7 @@ gem 'rails', '3.2.11'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
-
+gem 'closure-compiler'
 gem 'delayed_job_active_record'
 group :production do
   platforms :ruby do # linux
@@ -29,10 +29,8 @@ group :assets do
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
 
-  gem 'uglifier', '>= 1.0.3'
+  gem 'uglifier', '>= 1.0.4'
 end
-
-gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
@@ -48,6 +46,7 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'debugger'
+gem 'jquery-rails', '2.1.4'
 gem 'spree', '~> 1.3.0'
 gem 'spree_fancy', :branch => "customize_to_uniqteas", :git => 'git://github.com/mcaraway/spree_fancy.git'
 gem 'spree_auth_devise', :branch => "1-3-stable", :git => 'git://github.com/spree/spree_auth_devise'
