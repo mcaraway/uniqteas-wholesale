@@ -3,12 +3,16 @@
 
 	<div id="product-price">
 		<h6 class="product-section-title"><%= t(:price) %></h6>
+		<% if current_user %>
 		<div>
 			<span class="price selling" itemprop="price"><%= number_to_currency @product.price %></span>
 		</div>
+		<% else %>
+			<%= link_to t(:login), login_url %> to see prices.
+		<% end %>
 	</div>
 
-	<% if @product.final && current_user != nil %>
+	<% if @product.final and current_user %>
 	<div class="add-to-cart">
 		<% if @product.has_stock? || Spree::Config[:allow_backorders] %>
 		<%= number_field_tag (@product.has_variants? ? :quantity : "variants[#{@product.master.id}]"),
