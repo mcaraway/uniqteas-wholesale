@@ -11,6 +11,7 @@ group :production do
     gem 'unicorn'
   end
   gem 'pg'
+  gem 'memcachier'
   gem 'dalli'
   gem 'newrelic_rpm'
 end
