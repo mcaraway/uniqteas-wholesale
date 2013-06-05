@@ -16,3 +16,4 @@
 //= require admin/spree_fancy
 
 //= require_tree .
+//= require admin/spree_custom_products

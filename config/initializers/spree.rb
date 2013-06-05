@@ -38,5 +38,6 @@ Spree.config do |config|
 
   Spree.user_class = "Spree::User"
   Spree::Config.set(:address_requires_state, true)
+  Spree::Config.set(:show_variant_full_price, true)
 end
 

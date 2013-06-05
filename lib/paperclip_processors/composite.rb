@@ -1,7 +1,7 @@
 module Paperclip
   class Composite < Processor
     # Handles compositing of images that are uploaded.
-    attr_accessor :current_geometry, :target_geometry, :format, :whiny, :tin_path, :tin_fade_path, :label_template_path, :variant_id, :label_image_remote_url, :generate_tin_image
+    attr_accessor :current_geometry, :target_geometry, :format, :whiny, :tin_path, :tin_fade_path, :label_template_path, :variant_id, :label_image_remote_url, :generate_tin_image, :generate_label
     def initialize file, options = {}, attachment = nil
       super
       geometry          = options[:geometry]
@@ -17,37 +17,46 @@ module Paperclip
       @variant_id      = options[:variant_id]
       @label_image_remote_url = options[:label_image_remote_url]
       @generate_tin_image = options[:generate_tin_image]
+      @generate_label = options[:generate_label] || false
       @tin_fade_path = options[:tin_fade_path]
     end
 
     # Performs the conversion of the +file+. Returns the Tempfile
     # that contains the new image.
     def make
-      Paperclip.log("***********  Product is custom!  Compositing...")
-      nameImg = createText(productName, "36", "")
+      # set dst as file in case not generating a label
+      dst = file
+      
+      if generate_label
+        Paperclip.log("***********  Product is custom!  Compositing...")
+        nameImg = createText(productName, "36", "")
 
-      # next create the description text image
-      descImg = createText(productDescription, "18", "400x")
+        # next create the description text image
+        descImg = createText(productDescription, "18", "400x")
 
-      # next create the blend text image
-      blendImg = createText(productBlend, "36", "")
+        # next create the blend text image
+        blendImg = createText(productBlend, "36", "")
 
-      # now composite name text onto template
-      dst = compositeFiles(nameImg, label_image_remote_url.blank? ? label_template_path : file , "410x50!+20+20")
+        # now composite name text onto template
+        dst = compositeFiles(nameImg, label_image_remote_url.blank? ? label_template_path : file , "410x50!+20+20")
 
-      # now composite blend text onto comp
-      dst = compositeFiles(blendImg, dst, "405x25!+25+525")
+        # now composite blend text onto comp
+        dst = compositeFiles(blendImg, dst, "405x25!+25+525")
 
-      # now composite the description onto the dst
-      dst = compositeFiles(descImg, dst, "400x93!+25+433")
+        # now composite the description onto the dst
+        dst = compositeFiles(descImg, dst, "400x93!+25+433")
 
-      # now composite the image onto the label
-      if label_image_remote_url.blank?
-        dst = compositeFiles(file, dst, "411x314!+21+86")
+        # now composite the image onto the label
+        if label_image_remote_url.blank?
+          dst = compositeFiles(file, dst, "411x314!+21+86")
+        end
       end
-
-      if generate_tin_image
+      
+      if generate_tin_image and tin_path.include? "Tin"
         dst = compositeFiles(dst, tin_path, "249x327!+176+104")
+        dst = compositeFiles(tin_fade_path, dst, "600x600!+0+0")
+      elsif generate_tin_image and tin_path.include? "Pouch"
+        dst = compositeFiles(dst, tin_path, "249x327!+194+194")
         dst = compositeFiles(tin_fade_path, dst, "600x600!+0+0")
       end
 

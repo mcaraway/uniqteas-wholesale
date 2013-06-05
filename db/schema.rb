@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130414150335) do
+ActiveRecord::Schema.define(:version => 20130604192639) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -404,6 +404,7 @@ ActiveRecord::Schema.define(:version => 20130414150335) do
     t.boolean  "final",                :default => true
     t.integer  "user_id"
     t.boolean  "public",               :default => true
+    t.boolean  "customizable",         :default => false
   end
 
   add_index "spree_products", ["available_on"], :name => "index_spree_products_on_available_on"
