@@ -2,6 +2,7 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  check_out_our_new_featured_products: "Check out our new featured products."
   discount_type: "Discount Type"
   login_to_see_price: "Login to see price"
   coupon_code: "Coupon"
@@ -41,3 +42,4 @@ en:
   pick_an_image: "Pick your template"
   choose_image_or_template_html: "Choose your own image<br />or<br />choose from the templates below.<br /><br />"
   wholesale_account_request: "Wholesale Account Request"
+  home_page_intro_html: "Shouldn't your customers be drinking<br />your tea? We have the tea,<br />you create your own unique packaging.<br />"

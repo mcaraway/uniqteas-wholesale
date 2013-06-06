@@ -116,7 +116,6 @@ ActiveRecord::Schema.define(:version => 20130604192639) do
     t.integer  "taxon_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.string   "name"
   end
 
   create_table "spree_calculators", :force => true do |t|
@@ -400,10 +399,10 @@ ActiveRecord::Schema.define(:version => 20130604192639) do
     t.integer  "count_on_hand",        :default => 0
     t.datetime "created_at",                              :null => false
     t.datetime "updated_at",                              :null => false
-    t.boolean  "on_demand",            :default => false
-    t.boolean  "final",                :default => true
     t.integer  "user_id"
     t.boolean  "public",               :default => true
+    t.boolean  "final",                :default => true
+    t.boolean  "on_demand",            :default => false
     t.boolean  "customizable",         :default => false
   end
 

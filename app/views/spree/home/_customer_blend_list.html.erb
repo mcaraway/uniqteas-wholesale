@@ -1,6 +1,6 @@
-<% if @featured_products %>
+<% if @featured_products.any? %>
 <div id="home-customer-slider">
-	Choose from one of our customer-designed blends.
+	<%= t(:check_out_our_new_featured_products)%>
 	<ul>
 		<% @featured_products.each do |product| %>
 		<li>
