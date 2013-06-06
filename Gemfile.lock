@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: git://github.com/mcaraway/spree_custom_products.git
-  revision: f148d9ab451d75e4e290fb693667a8438a64aeef
+  revision: 9c1a3f485387f9abf0d42d3b7d487ced83858521
   specs:
     spree_custom_products (1.3.2)
       paperclip
