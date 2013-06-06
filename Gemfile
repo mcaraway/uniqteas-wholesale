@@ -14,13 +14,11 @@ group :production do
   gem 'memcachier'
   gem 'dalli'
   gem 'newrelic_rpm'
-  gem 'spree_custom_products', :git => 'git://github.com/mcaraway/spree_custom_products.git'
 end
 
 group :development do
   gem 'sqlite3'
   gem 'rspec-rails', '2.11.0'
-  gem 'spree_custom_products', :path => '../spree_custom_products'
 end
 
 # Gems used only for assets and not required
@@ -65,3 +63,5 @@ gem 'spree_contact_us', :git => 'git://github.com/sbeam/spree_contact_us.git'
 gem "recaptcha", :require => "recaptcha/rails" # if you are using reCAPTCHA
 gem 'datashift', '~> 0.13.0'
 gem 'datashift_spree', '~>0.5.0'
+gem 'spree_custom_products', :git => 'git://github.com/mcaraway/spree_custom_products.git'
+#gem 'spree_custom_products', :path => '../spree_custom_products'
